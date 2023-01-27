@@ -25,25 +25,21 @@ module.exports = (sequelize) => {
       },
 
       released: {
-        type: DataTypes.DATEONLY,
+        type: DataTypes.STRING,
       },
 
       rating: {
-        type: DataTypes.FLOAT,
-        validate: {
-          min: 1.0,
-          max: 5,
-        },
+        type: DataTypes.DECIMAL,
       },
 
       platforms: {
-        type: DataTypes.ARRAY(DataTypes.STRING),
-        allowNull: true,
+        type: DataTypes.STRING,
+        allowNull: false,
       },
 
-      background_image: {
+      image: {
         type: DataTypes.TEXT,
-        allowNull: true,
+        allowNull: false,
       },
 
       createdInDb: {
