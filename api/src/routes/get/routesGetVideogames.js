@@ -22,7 +22,7 @@ router.get('/', async (req, res) => {
 
 
 router.get('/:id', async (req, res) => {
-  //    const id = req.params.id
+  //  const id = req.params.id
       const {id} = req.params
       const vGameD = await getDetail(id)
       try {
