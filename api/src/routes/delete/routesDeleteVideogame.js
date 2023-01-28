@@ -1,5 +1,5 @@
 const { Router } = require('express');
-const { deleteVideogame } = require('../../controllers/delete/deletevideogame');
+const { deleteVideogame } = require('../../controllers/delete/deleteVideogame');
 
 
 const router = Router();
