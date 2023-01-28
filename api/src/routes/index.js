@@ -4,6 +4,7 @@ const { Router } = require('express');
 const routesGetVideogames = require('./get/routesGetVideogames');
 const routesGenres = require('./get/routesGenres');
 const routesPostVideogame = require('./post/routesPostVideoGame');
+const routesPutVideogame = require('./put/routesPutVideogame');
 
 const router = Router();
 
@@ -16,6 +17,8 @@ router.use('/videogames', routesGetVideogames);
 router.use('/genres', routesGenres);
 
 router.use('/videogame', routesPostVideogame);
+
+router.use('/videogame', routesPutVideogame);
 
 
 
