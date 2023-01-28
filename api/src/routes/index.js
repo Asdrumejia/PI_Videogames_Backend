@@ -5,6 +5,8 @@ const routesGetVideogames = require('./get/routesGetVideogames');
 const routesGenres = require('./get/routesGenres');
 const routesPostVideogame = require('./post/routesPostVideoGame');
 const routesPutVideogame = require('./put/routesPutVideogame');
+const routesDeleteVideogame = require('./delete/routesDeleteVideogame'); 
+
 
 const router = Router();
 
@@ -19,6 +21,8 @@ router.use('/genres', routesGenres);
 router.use('/videogame', routesPostVideogame);
 
 router.use('/videogame', routesPutVideogame);
+
+router.use('/videogame', routesDeleteVideogame);
 
 
 
