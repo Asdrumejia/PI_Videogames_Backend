@@ -1,7 +1,7 @@
 const axios = require('axios')
 const { Videogame, Genre } = require('../../db');
 const { API_KEY } = process.env;
-
+ 
 
 const getVideoGames = async () => {
    const url = `https://api.rawg.io/api/games?key=${API_KEY}`
@@ -47,7 +47,7 @@ const getVideoGames = async () => {
     }
    })
    return listGames
-};
+}
 
 
 const getDetail = async (id) => {
@@ -55,7 +55,7 @@ const getDetail = async (id) => {
         const dataApi = await axios.get(`https://api.rawg.io/api/games/${id}?key=${API_KEY}`)
         const detail = dataApi.data;
         const gameApiDetail = {
-          name: detail.name,
+        name: detail.name,
           image: detail.background_image,
           description: detail.description.replace(/<[^>]*>?/g,''),
           released: detail.released,
@@ -67,17 +67,20 @@ const getDetail = async (id) => {
     }
 
     if(/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/.test(id)){
-         const detailGameDb = await Videogame.findByPk(id, {
-            include:{
+         const responseDb = await Videogame.findByPk(id, {
+            include: [ 
+                {
                 model: Genre,
                 attributes: ["name"],
                 through: {
                     attributes: [],
-                }
-             }
-         })
+              },
+            },
+          ]
+        })
+       return responseDb;
     }
-};
+}
 
 
 module.exports = {
