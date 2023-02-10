@@ -1,25 +1,23 @@
 const { Videogame, Genre } = require("../../db");
 
-const postVideoGame = async (name, image, description, released, rating, genres, platforms) => {
-       if(!name || !image || !description || !released || !rating || !genres || !platforms){
-        throw('Missing data to create video game')
-} else{
+
+const postVideoGame = async (name, description, released, rating, platforms, genres, image, createdInD) => {
     const newVideoGame = await Videogame.create({
         name, 
-        image,
         description, 
         released, 
         rating,
-        platforms
-    })
+        platforms,
+        image,
+        createdInD
+    });
 
     let genresDb = await Genre.findAll({
-        where: { name: genres.length ? genres : genres?.map(g => g.name) }
-    })
+        where: { name: genres }
+    });
     
     await newVideoGame.addGenre(genresDb);
     return newVideoGame;
-  }
 };
 
 

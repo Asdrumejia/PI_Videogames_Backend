@@ -29,7 +29,7 @@ module.exports = (sequelize) => {
       },
 
       rating: {
-        type: DataTypes.DECIMAL,
+        type: DataTypes.INTEGER,
       },
 
       platforms: {
@@ -50,6 +50,6 @@ module.exports = (sequelize) => {
     },
     {
       timestamps: false,
-    }
+    },
   );
 };

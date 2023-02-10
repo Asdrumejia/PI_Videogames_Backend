@@ -1,21 +1,21 @@
-const axios = require('axios')
-const { Videogame, Genre } = require('../../db');
+const axios = require("axios")
+const { Videogame, Genre } = require("../../db");
 const { API_KEY } = process.env;
  
 
 const getVideoGames = async () => {
    const url = `https://api.rawg.io/api/games?key=${API_KEY}`
-   const promise = await axios.get(url + "&page_size=100")
+   const promise = await axios.get(url + "&page_size=100");
    const dataGames = promise.data
    const apiGames = dataGames.results.map((v) => {
     return{
         id: v.id,
         name: v.name,
-        background_image: v.background_image,
         released: v.released,
         rating: v.rating,
-        platforms: v.platforms.map((p) => p.platform.name).toString(),
-        genres: v.genres.map((g) => g.name).toString()
+        platforms: v.platforms.map((p) => p.platform.name).join(", "),
+        genres: v.genres.map((g) => g.name).join(", "),
+        background_image: v.background_image
     }
 })
 
@@ -37,31 +37,31 @@ const getVideoGames = async () => {
     return{
         id: vg.id,
         name: vg.name,
-        image: vg.background_image,
-        description: vg.description,
         released: vg.released,
         rating: vg.rating,
         platforms: vg.platforms,
         genres: vg.genres,
+        description: vg.description,
+        image: vg.background_image,
         createdInDb: vg.createdInDb
     }
    })
    return listGames
-}
+};
 
 
-const getDetail = async (id) => {
+const getVideoGamesById = async (id) => {
     if(!isNaN(id)){
-        const dataApi = await axios.get(`https://api.rawg.io/api/games/${id}?key=${API_KEY}`)
+        const dataApi = await axios.get(`https://api.rawg.io/api/games/${id}?key=${API_KEY}`);
         const detail = dataApi.data;
         const gameApiDetail = {
-        name: detail.name,
-          image: detail.background_image,
+          name: detail.name,
           description: detail.description.replace(/<[^>]*>?/g,''),
           released: detail.released,
           rating: detail.rating,
-          genres: detail.genres.map((g) => g.name).toString(),
-          platforms: detail.platforms.map((p) => p.platform.name).toString()
+          platforms: detail.platforms.map((p) => p.platform.name).join(", "),
+          genres: detail.genres.map((g) => g.name).join(", "),
+          image: detail.background_image,
         }
         return gameApiDetail;
     }
@@ -80,10 +80,10 @@ const getDetail = async (id) => {
         })
        return responseDb;
     }
-}
+};
 
 
 module.exports = {
  getVideoGames,
- getDetail
+ getVideoGamesById
 }

@@ -1,11 +1,11 @@
-const { Router } = require('express');
+const { Router } = require("express");
 // Importar todos los routers;
 // Ejemplo: const authRouter = require('./auth.js');
-const routesGetVideogames = require('./get/routesGetVideogames');
-const routesGenres = require('./get/routesGenres');
-const routesPostVideogame = require('./post/routesPostVideoGame');
-const routesPutVideogame = require('./put/routesPutVideogame');
-const routesDeleteVideogame = require('./delete/routesDeleteVideogame'); 
+const getVideogames = require("./get/routesGetVideogames");
+const getGenres = require("./get/routesGenres");
+const postVideogame = require("./post/routesPostVideoGame");
+const putVideogame = require("./put/routesPutVideogame");
+const deleteVideogame = require("./delete/routesDeleteVideogame"); 
 
 
 const router = Router();
@@ -15,15 +15,15 @@ const router = Router();
 // Ejemplo: router.use('/auth', authRouter);
 
 
-router.use('/videogames', routesGetVideogames);
+router.use("/videogames", getVideogames);
 
-router.use('/genres', routesGenres);
+router.use("/genres", getGenres);
 
-router.use('/videogame', routesPostVideogame);
+router.use("/videogame", postVideogame);
 
-router.use('/videogame', routesPutVideogame);
+router.use("/videogame", putVideogame);
 
-router.use('/videogame', routesDeleteVideogame);
+router.use("/videogame", deleteVideogame);
 
 
 

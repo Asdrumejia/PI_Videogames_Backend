@@ -1,8 +1,8 @@
 const { Videogame } = require("../../db");
 
 
-const putVideoGame = async (id, name, image, description, released, rating, genres, platforms) => {
-   const VideogameDb = await Videogame.findByPk(id)
+const putVideoGame = async (id, name, description, released, rating, platforms, genres, image) => {
+   const VideogameDb = await Videogame.findByPk(id);
 
    VideogameDb?.update({
      name: name,
@@ -14,7 +14,7 @@ const putVideoGame = async (id, name, image, description, released, rating, genr
      platforms: platforms
   
    }) 
-  return VideogameDb
+  return VideogameDb;
   
 };
 
