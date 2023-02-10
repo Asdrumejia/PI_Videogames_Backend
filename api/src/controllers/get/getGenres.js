@@ -9,10 +9,9 @@ const getGenres = async () => {
   const genres = dataGenres.results.map((g) => g.name);
 
   genres.map((g) => Genre.findOrCreate({
-    where: {
-        name: g
-    }
-  }));
+    where: {name: g}
+    })
+  );
 
   const aLLGenres = await Genre.findAll();
 

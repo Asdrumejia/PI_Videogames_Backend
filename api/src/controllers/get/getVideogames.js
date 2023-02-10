@@ -24,9 +24,7 @@ const getVideoGames = async () => {
      include: {
         model: Genre,
         attributes: ["name"],
-        through: {
-            attributes: [],
-        }
+        through: {attributes: []}
      }
    })
 
@@ -46,7 +44,7 @@ const getVideoGames = async () => {
         createdInDb: vg.createdInDb
     }
    })
-   return listGames
+   return listGames;
 };
 
 
@@ -61,7 +59,7 @@ const getVideoGamesById = async (id) => {
           rating: detail.rating,
           platforms: detail.platforms.map((p) => p.platform.name).join(", "),
           genres: detail.genres.map((g) => g.name).join(", "),
-          image: detail.background_image,
+          image: detail.background_image
         }
         return gameApiDetail;
     }
@@ -72,10 +70,8 @@ const getVideoGamesById = async (id) => {
                 {
                 model: Genre,
                 attributes: ["name"],
-                through: {
-                    attributes: [],
-              },
-            },
+                through: {attributes: []}
+            }
           ]
         })
        return responseDb;

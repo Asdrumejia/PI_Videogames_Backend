@@ -11,12 +11,12 @@ router.get("/", async (req, res) => {
   try {
     if(name){
       let gameFilter = vGames.filter(vg => vg.name.toLowerCase().includes(name.toLocaleLowerCase()));
-      gameFilter.length ? res.status(200).send(gameFilter) : res.status(400).send("VideoGame not found");
+      gameFilter.length ? res.status(200).send(gameFilter) : res.status(404).send("VideoGame not found");
   }else{
      res.status(200).send(vGames);
   }
   } catch (error) {
-    res.status(400).send(error.message);
+    res.status(404).send(error.message);
   }
 });
 
@@ -28,7 +28,7 @@ router.get("/:id", async (req, res) => {
       try {
           res.status(200).send(vGameD);
       } catch (error) {
-          res.status(400).send(error.message);
+          res.status(404).send(error.message);
       }
 });
 
